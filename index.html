@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TodoApp</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+<!--TODO Two sections with input select and list of items. Input must search in the items by query wich was selected.-->
+<!--TODO Every typing should call function and rerender list of items. hint: noresults ? show "no items"    -->
+
+<section style="width: 50%; display: inline;float: left">
+    <input type="text" name="searchQuery">
+    <select name="searchType">
+        <option value="false">name</option>
+        <option value="true">email</option>
+    </select>
+    <div id="list" class="list">
+        <ul>
+            <li class="list-item">
+                <h2 style="color: brown">Name</h2>
+                <p>email</p>
+            </li>
+        </ul>
+    </div>
+</section>
+<section style="width: 50%; display: inline;float: left">
+    <input type="text" name="todoSearch">
+    <input type="button" value="add">
+    <div class="todos">
+        <ul>
+            <li class="todo-item">
+                <input type="checkbox">
+                <h2>Name</h2>
+                <input type="button" value="remove">
+            </li>
+        </ul>
+    </div>
+</section>
+
+
+
+<script src="index.js"></script>
+</body>
+</html>
