@@ -10,34 +10,29 @@
 <!--TODO Every typing should call function and rerender list of items. hint: noresults ? show "no items"    -->
 
 <section style="width: 50%; display: inline;float: left">
-    <input type="text" name="searchQuery">
-    <select name="searchType">
-        <option value="false">name</option>
-        <option value="true">email</option>
+    <input  onkeyup="search()" type='text' id='search' name="searchQuery" autocomplete='off' placeholder="Search">
+    <select id="mySelect" onchange="onChangeSelect()">
+        <option value="name">name</option>
+        <option value="email">email</option>
     </select>
-    <div id="list" class="list">
+    <div id='result'>
         <ul>
-            <li class="list-item">
-                <h2 style="color: brown">Name</h2>
-                <p>email</p>
-            </li>
         </ul>
     </div>
 </section>
-<section style="width: 50%; display: inline;float: left">
-    <input type="text" name="todoSearch">
-    <input type="button" value="add">
-    <div class="todos">
-        <ul>
-            <li class="todo-item">
-                <input type="checkbox">
-                <h2>Name</h2>
-                <input type="button" value="remove">
-            </li>
-        </ul>
+<section id="section2" style="width: 50%; display: inline;float: left">
+    <input type="text" id="addTodo" name="todoSearch" placeholder="Enter name">
+    <button type="button" id="addTodoBtn" value="add" onclick="addTodo()">Add</button>
+    <div id="todos" class="todos">
+<!--        <ul>-->
+<!--            <li class="list">-->
+<!--                <h2 id="todoTitle"></h2>-->
+<!--                <input id="change" type="checkbox" onchange="isDoneChange()">-->
+<!--                <input type="button" class="remove" value="remove" onclick="removeTodo(id)">-->
+<!--            </li>-->
+<!--        </ul>-->
     </div>
 </section>
-
 
 
 <script src="index.js"></script>
