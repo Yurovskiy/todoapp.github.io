@@ -1,0 +1,98 @@
+body {
+    font-family: Calibri;
+}
+ul  {
+    padding-left: 0;
+    margin: 0;
+}
+#result{
+    width: 100%;
+}
+#mySelect {
+    display: inline-block;
+    padding: 5px 2px;
+    border-radius: 4px;
+    font-family: Calibri;
+    font-size: 16px;
+    border: 2px solid #cdcdcd;
+    outline: none;
+    margin-left: 4px;
+}
+#search {
+    margin-bottom: 20px;
+    padding: 6px;
+    display: inline-block;
+    width: 25%;
+    border-radius: 4px;
+    outline: none;
+    font-family: Calibri;
+    font-size: 16px;
+    border: 2px solid #cdcdcd;
+}
+#mySelect:hover,
+#mySelect:focus,
+#search:hover,
+#search:focus,
+#addTodo:hover,
+#addTodo:focus {
+    box-shadow:0 0 6px 0 rgba(0,0,0,0.5);
+}
+li {
+    list-style: none;
+}
+.list {
+    padding: 10px;
+    margin-bottom: 20px;
+    background: #cdcdcd;
+    box-shadow:0 0 6px 0 rgba(0,0,0,0.5);
+    border-radius: 6px;
+    overflow: auto;
+    width: 36%;
+}
+.list:hover{
+    background:#f5f5f5;
+    cursor:pointer;
+}
+.list h2 {
+    color: #313131;
+    margin: 0;
+    font-size: 20px;
+}
+.list p {
+    margin: 0;
+    color: darkcyan;
+}
+
+
+
+#addTodo {
+    margin-bottom: 20px;
+    padding: 6px;
+    display: inline-block;
+    width: 25%;
+    border-radius: 4px;
+    outline: none;
+    font-family: Calibri;
+    font-size: 16px;
+    border: 2px solid #cdcdcd;
+}
+#addTodoBtn {
+    display: inline-block;
+    padding: 6px 8px;
+    border-radius: 4px;
+    font-family: Calibri;
+    font-size: 16px;
+    border: 2px solid #cdcdcd;
+    outline: none;
+    margin-left: 4px;
+    background: #ffffff;
+}
+#addTodoBtn:hover,
+#addTodoBtn:focus {
+    background: #ededed;
+    box-shadow: 0 0 6px 0 rgba(0,0,0,0.5);
+    cursor: pointer;
+}
+.remove {
+    float: right;
+}
