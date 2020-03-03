@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    font-family: Calibri, sans-serif;
+    color: #333333;
+}
+
+.section_1, .section_2 {
+    width: 50%;
+    display: inline-block;
+    float: left;
+    padding: 10px;
+}
+
+.section_1 li {
+    padding: 10px;
+    margin: 10px 0 0;
+
+    background: cadetblue;
+    border-radius: 4px;
+}
+
+.section_1 h2 {
+    color: white;
+    font-size: 18px;
+}
+
+#search, #newTodo {
+    padding: 0 0 0 8px;
+}
+
+#addTodo {
+    padding: 0 10px;
+}
+
+
+.newTodo {
+    position: relative;
+    padding: 10px;
+    margin: 10px 0 0;
+
+    background: gray;
+    border-radius: 4px;
+    color: white;
+}
+
+.newTodo input {
+    margin: 4px 10px;
+    float: left;
+}
+
+.newTodo button {
+    float: right;
+    padding: 0 5px;
+}

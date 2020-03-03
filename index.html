@@ -3,38 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <title>TodoApp</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="main.css">
 </head>
 <body>
 <!--TODO Two sections with input select and list of items. Input must search in the items by query wich was selected.-->
 <!--TODO Every typing should call function and rerender list of items. hint: noresults ? show "no items"    -->
 
-<section style="width: 50%; display: inline;float: left">
-    <input  onkeyup="search()" type='text' id='search' name="searchQuery" autocomplete='off' placeholder="Search">
-    <select id="mySelect" onchange="onChangeSelect()">
+<section class="section_1">
+
+    <input  onkeyup="search()"
+            type='text'
+            id='search'
+            name="searchQuery"
+            autocomplete='off'
+            placeholder="Search">
+
+    <select id="mySelect"
+            onchange="onChangeSelect()">
+
         <option value="name">name</option>
         <option value="email">email</option>
+
     </select>
+
     <div id='result'>
-        <ul>
-        </ul>
+
     </div>
+
 </section>
-<section id="section2" style="width: 50%; display: inline;float: left">
-    <input type="text" id="addTodo" name="todoSearch" placeholder="Enter name">
-    <button type="button" id="addTodoBtn" value="add" onclick="addTodo()">Add</button>
-    <div id="todos" class="todos">
-<!--        <ul>-->
-<!--            <li class="list">-->
-<!--                <h2 id="todoTitle"></h2>-->
-<!--                <input id="change" type="checkbox" onchange="isDoneChange()">-->
-<!--                <input type="button" class="remove" value="remove" onclick="removeTodo(id)">-->
-<!--            </li>-->
-<!--        </ul>-->
+
+<section class="section_2">
+
+    <input type="text"
+           id="newTodo"
+           placeholder="Enter name">
+
+    <button type="button"
+            id="addTodo"
+            value="add"> Add
+    </button>
+
+    <div id="todosList" class="todos">
+
     </div>
+
 </section>
 
 
-<script src="index.js"></script>
+<script src="todo.js"></script>
+<script src="search.js"></script>
 </body>
 </html>
