@@ -10,19 +10,33 @@ const TODOS = [
 ];
 
 /* INIT TO WORK OBJ & GET OBJ FROM STORAGE */
-let todos       = TODOS,
+let todos = TODOS,
     concatTodos = localStorage.getItem('todos') ?
-    JSON.parse(localStorage.getItem('todos')) : todos;
+        JSON.parse(localStorage.getItem('todos')) : todos;
+
+let addTodo = document.getElementById('addTodo'), // Btn
+    newTodoTitle = document.getElementById('newTodo'), // Input
+    todosList = document.getElementById('todosList'); // List
 
 
 /* SET TO STORAGE */
-localStorage.setItem('todos', JSON.stringify(concatTodos));
+setStorage(concatTodos, true);
 
+renderListTodos(concatTodos);
 
-let addTodo   = document.getElementById('addTodo'), // Btn
-    newTodo   = document.getElementById('newTodo'), // Input
-    todosList = document.getElementById('todosList'); // List
+function renderListTodos(arr) {
+    todosList.innerHTML = '';
+    arr.forEach(todoItem => {
+        createNewTodo(todoItem);
+    });
+}
 
+/* CLEAR ALL */
+document.getElementById('clear').addEventListener('click', function () {
+    concatTodos = [];
+    localStorage.clear();
+    renderListTodos(concatTodos);
+});
 
 /* GET MAX ID FOR TODOS */
 function getMaxId(arr) {
@@ -35,91 +49,74 @@ function getMaxId(arr) {
     return maxId;
 }
 
-
-/* CHECK STATUS */
-function checkStat() {
-    let checkbox = document.querySelectorAll('.checkbox');
-
-    let newArr = [];
-
-    for (let check of checkbox) {
-        if (check.checked === true) {
-            concatTodos.filter(function (todo) {
-                todo.isDone = true;
-                newArr.push(todo.isDone);
-                console.log(todo.isDone);
-                localStorage.setItem('newArr', JSON.stringify(newArr));
-            });
-        } else {
-            concatTodos.filter(function (todo) {
-                todo.isDone = false;
-                newArr.push(todo.isDone);
-                console.log(todo.isDone);
-                localStorage.setItem('newArr', JSON.stringify(newArr));
-            });
+/* CHECK DONE */
+function isDone(el) {
+    let checkbox = el.target;
+    concatTodos.forEach(todoItem => {
+        if (checkbox.dataset.id === JSON.stringify(todoItem.id)) {
+            todoItem.isDone = !todoItem.isDone;
+            if (!todoItem.isDone) {
+                removeItem(todoItem);
+                console.log(todoItem);
+            }
         }
-
-    }
-
-    newArr += localStorage.setItem('todos', JSON.stringify(concatTodos));
-
-
-
-    // concatTodos.filter(function (todo) {
-    //     console.log(todo);
-    //     for (let check of checkbox) {
-    //         todo.isDone = check.checked === true;
-    //     }
-    //     console.log(todo.isDone);
-    // });
-
-    return newArr;
+    });
+    setStorage(concatTodos, true);
 }
 
+/* SET TO || RESET STORAGE */
+function setStorage(arr, reset) {
+    if (reset) {
+        localStorage.removeItem('todos');
+    }
+    localStorage.setItem('todos', JSON.stringify(arr.filter(el => el.isDone)));
+}
 
-/* MAKE NEW TODOS */
-let makeNewTodo = todoItem => {
+/* CREATE NEW TODOS */
+function createNewTodo(todoItem) {
     let todo = document.createElement('div');
-        todo.innerText = todoItem.title;
-        todo.className = 'newTodo';
-        todo.id = todoItem.id;
+    todo.innerText = todoItem.title;
+    todo.isDone = todoItem.isDone;
+    todo.dataset.id = todoItem.id;
+    todo.className = 'newTodo';
 
     let checkbox = todo.appendChild(document.createElement('input'));
-        checkbox.type = 'checkbox';
-        checkbox.className = 'checkbox';
-        checkbox.id = todoItem.id;
-
-    checkbox.addEventListener('change', checkStat);
-    // if (localStorage.getItem('checkbox') === 'true') {
-    //     checkbox.setAttribute('checked', 'checked');
-    // }
+    checkbox.checked = todoItem.isDone;
+    checkbox.dataset.id = todoItem.id;
+    checkbox.type = 'checkbox';
+    checkbox.className = 'checkbox';
+    checkbox.addEventListener('change', isDone);
 
     let remove = todo.appendChild(document.createElement('button'));
-        remove.innerText = 'clear';
+    remove.innerText = 'remove';
+    remove.dataset.id = todoItem.id;
     remove.addEventListener('click', removeItem);
 
     todosList.appendChild(todo);
-};
+}
 
 
 /* REMOVE ITEM */
-function removeItem() {
-    // console.log(this.parentElement);
-    // let id = this.parentElement.id;
-    // concatTodos.splice(id, 1);
-    // localStorage.setItem('todos', JSON.stringify(concatTodos));
+function removeItem(el) {
+    concatTodos = concatTodos.filter((todoItem) => {
+        if (el.target.dataset.id !== JSON.stringify(todoItem.id)) {
+            return todoItem
+        }
+    });
+    renderListTodos(concatTodos);
+    setStorage(concatTodos, true);
 }
 
 
 /* ADD NEW TODOS */
 addTodo.addEventListener('click', function () {
 
-    let newTodoName = newTodo.value;
+    let newTodoName = newTodoTitle.value;
     let maxId = getMaxId(concatTodos);
 
-    if (newTodo.value === '') {
+    if (newTodoTitle.value === '') {
         return false;
-    } // ease validation
+    }
 
     let todo = {
         isDone: false,
@@ -127,17 +124,6 @@ addTodo.addEventListener('click', function () {
         title: newTodoName,
     };
     concatTodos.push(todo);
-    makeNewTodo(todo);
-    newTodo.value = '';
-
+    createNewTodo(todo);
+    newTodoTitle.value = '';
 });
-
-
-concatTodos.forEach(todoItem => {
-    makeNewTodo(todoItem);
-});
-
-document.getElementById('clear')
-    .addEventListener('click', function () {
-       localStorage.clear();
-    });
